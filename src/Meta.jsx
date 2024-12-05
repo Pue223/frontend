@@ -22,7 +22,7 @@ export const Meta = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:4001/api/totalmeta')
+            .get('https://backendtw.onrender.com/api/totalmeta')
             .then((response) => {
                 if (response.data.ok) {
                     const fetchedData = response.data.meta;
