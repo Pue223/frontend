@@ -95,7 +95,10 @@ export const Meta = () => {
                                             <TableRow key={item.id}>
                                                 <TableCell className="text-center">{formatCurrency(item["Ingresos Corrientes"])}</TableCell>
                                                 <TableCell className="text-center">{formatCurrency(item["Umbral mínimo"])}</TableCell>
-                                                <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
+                                                <TableCell className="text-center">
+                                                    {Math.floor(item["Avance"] * 100) / 100}%
+                                                            </TableCell>
+
                                                 <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
                                                 {/* Badge condicional */}
                                                 <TableCell className="text-center">
