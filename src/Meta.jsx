@@ -104,7 +104,7 @@ export const Meta = () => {
                                                             META CUMPLIDA
                                                         </Badge>
                                                     ) : (
-                                                        <Badge className="bg-yellow-50 text-yellow-900 ring-yellow-600/30">
+                                                        <Badge className="bg-red-50 text-red-900 ring-red-600/20">
                                                             EN PROGRESO...
                                                         </Badge>
                                                     )}
@@ -140,7 +140,17 @@ export const Meta = () => {
                                                 <TableCell className="text-center">{formatCurrency(item["Umbral máximo"])}</TableCell>
                                                 <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
                                                 <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
-
+                                                   <TableCell className="text-center">
+                                                    {item["Avance"].toFixed(2) === "100.00" ? (
+                                                        <Badge className="bg-emerald-50 text-emerald-900 ring-emerald-600/30">
+                                                            META CUMPLIDA
+                                                        </Badge>
+                                                    ) : (
+                                                        <Badge className="bg-red-50 text-red-900 ring-red-600/20">
+                                                            EN PROGRESO...
+                                                        </Badge>
+                                                    )}
+                                                </TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
