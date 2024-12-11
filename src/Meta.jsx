@@ -7,7 +7,8 @@ import {
     TableHead,
     TableHeaderCell,
     TableRow,
-    Card
+    Card,
+    Badge
 } from '@tremor/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import axios from "axios";
@@ -22,7 +23,7 @@ export const Meta = () => {
 
     useEffect(() => {
         axios
-            .get('https://backendtw.onrender.com/api/totalmeta')
+            .get('http://localhost:4001/api/totalmeta')
             .then((response) => {
                 if (response.data.ok) {
                     const fetchedData = response.data.meta;
@@ -68,12 +69,14 @@ export const Meta = () => {
 
     return (
         <>
+
             <Tabs defaultValue="tab1">
                 <TabsList className="space-y-6 flex flex-col">
                     {/* Tab para el id 1 */}
                     <TabsTrigger value="tab1">
 
                         {dataId1.length > 0 && (
+
                             <Card className="mx-auto max-w-2xl mb-6">
                                 <p>
                                     Cuadro 1:
@@ -94,6 +97,18 @@ export const Meta = () => {
                                                 <TableCell className="text-center">{formatCurrency(item["Umbral mínimo"])}</TableCell>
                                                 <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
                                                 <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
+                                                {/* Badge condicional */}
+                                                <TableCell className="text-center">
+                                                    {item["Avance"].toFixed(2) === "100.00" ? (
+                                                        <Badge className="bg-emerald-50 text-emerald-900 ring-emerald-600/30">
+                                                            META CUMPLIDA
+                                                        </Badge>
+                                                    ) : (
+                                                        <Badge className="bg-yellow-50 text-yellow-900 ring-yellow-600/30">
+                                                            EN PROGRESO...
+                                                        </Badge>
+                                                    )}
+                                                </TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
@@ -125,6 +140,7 @@ export const Meta = () => {
                                                 <TableCell className="text-center">{formatCurrency(item["Umbral máximo"])}</TableCell>
                                                 <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
                                                 <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
+
                                             </TableRow>
                                         ))}
                                     </TableBody>
@@ -147,7 +163,7 @@ export const Meta = () => {
                                 categories={["Umbral mínimo", "Ingresos Corrientes"]} // Nombres amigables en las categorías
                                 valueFormatter={dataFormatter}
                                 yAxisWidth={88}
-                                colors={["blue", "amber"]} 
+                                colors={["blue", "amber"]}
                                 className="h-2xl" // Controla la altura del gráfico
                             />
                         </div>
