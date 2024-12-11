@@ -77,7 +77,7 @@ export const Meta = () => {
 
                         {dataId1.length > 0 && (
 
-                            <Card className="mx-auto max-w-2xl mb-6">
+                            <Card className="mx-auto max-w-4xl mb-6">
                                 <p>
                                     Cuadro 1:
                                 </p>
@@ -120,7 +120,7 @@ export const Meta = () => {
                     {/* Tab para el id 2 */}
                     <TabsTrigger value="tab2">
                         {dataId2.length > 0 && (
-                            <Card className="mx-auto max-w-2xl mb-6">
+                            <Card className="mx-auto max-w-4xl mb-6">
                                 <p>
                                     Cuadro 2:
                                 </p>
