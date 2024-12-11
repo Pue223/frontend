@@ -99,7 +99,7 @@ export const Meta = () => {
                                                 <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
                                                 {/* Badge condicional */}
                                                 <TableCell className="text-center">
-                                                    {item["Avance"].toFixed(2) === "100.00" ? (
+                                                    {item["Avance"].toFixed(2) === "100.99" ? (
                                                         <Badge className="bg-emerald-50 text-emerald-900 ring-emerald-600/30">
                                                             META CUMPLIDA
                                                         </Badge>
@@ -141,7 +141,7 @@ export const Meta = () => {
                                                 <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
                                                 <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
                                                    <TableCell className="text-center">
-                                                    {item["Avance"].toFixed(2) === "100.00" ? (
+                                                    {item["Avance"].toFixed(2) === "100.99" ? (
                                                         <Badge className="bg-emerald-50 text-emerald-900 ring-emerald-600/30">
                                                             META CUMPLIDA
                                                         </Badge>
