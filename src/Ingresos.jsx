@@ -5,7 +5,7 @@ import {
   AccordionHeader,
   AccordionList
 } from '@tremor/react';
-import { RiCalendar2Fill } from "@remixicon/react";
+import { RiCalendar2Fill, RiArrowUpSFill, RiArrowDownSFill } from "@remixicon/react";
 import axios from 'axios';
 
 export const Ingresos = () => {
@@ -24,14 +24,7 @@ export const Ingresos = () => {
         console.error("Hubo un error al obtener los datos:", error);
       });
   }, []);
-  const formatCurrency = (value) => {
-    return new Intl.NumberFormat('es-PE', {
-        style: 'currency',
-        currency: 'PEN',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    }).format(value);
-};
+
   return (
     <>
       <Accordion className="mt-3">
@@ -46,14 +39,28 @@ export const Ingresos = () => {
             </AccordionHeader>
             <AccordionBody>
               <ol className="flex flex-col gap-2">
-                {ingresos.map((item, index) => (
-                  <li key={index}>
-                    <span className="font-semibold text-gray-900 dark:text-gray-50">
-                      Fecha: {item.fecha } - Ingreso:
-                    </span>{' '}
-                    {formatCurrency(item.ingreso)}
-                  </li>
-                ))}
+                {ingresos.map((item, index) => {
+                  let icon = null;
+
+                  // Compara el ingreso actual con el anterior
+                  if (index > 0) {
+                    const prevIngreso = ingresos[index - 1].ingreso;
+                    if (item.ingreso > prevIngreso) {
+                      icon = <RiArrowUpSFill className="text-green-500" />;
+                    } else if (item.ingreso < prevIngreso) {
+                      icon = <RiArrowDownSFill className="text-red-500" />;
+                    }
+                  }
+
+                  return (
+                    <li key={index} className="flex items-center gap-2">
+                      <span className="font-semibold text-gray-900 dark:text-gray-50">
+                        Fecha: {item.fecha} - Ingreso:
+                      </span>{' '}
+                      {item.ingreso} {icon}
+                    </li>
+                  );
+                })}
               </ol>
             </AccordionBody>
           </div>
