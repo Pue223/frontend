@@ -5,7 +5,7 @@ import {
   AccordionHeader,
   AccordionList
 } from '@tremor/react';
-import { RiCalendar2Fill, RiArrowUpSFill, RiArrowDownSFill } from "@remixicon/react";
+import { RiCalendar2Fill, RiArrowUpDoubleLine , RiArrowDownDoubleLine  } from "@remixicon/react";
 import axios from 'axios';
 
 export const Ingresos = () => {
@@ -55,9 +55,9 @@ export const Ingresos = () => {
                   if (index > 0) {
                     const prevIngreso = ingresos[index - 1].ingreso;
                     if (item.ingreso > prevIngreso) {
-                      icon = <RiArrowUpSFill className="text-green-500" />;
+                      icon = <RiArrowUpDoubleLine  className="text-green-500" />;
                     } else if (item.ingreso < prevIngreso) {
-                      icon = <RiArrowDownSFill className="text-red-500" />;
+                      icon = <RiArrowDownDoubleLine className="text-red-500" />;
                     }
                   }
 
