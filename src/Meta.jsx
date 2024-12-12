@@ -99,11 +99,10 @@ export const Meta = () => {
                                                     {Math.floor(item["Avance"] * 100) / 100}%
                                                             </TableCell>
 
-                                                <TableCell className="text-center">
-                                                   
-                                                        <RiArrowUpDoubleFill color='green' />
-                                                       
-                                                    {formatCurrency(item["Diferencia"])}</TableCell>
+                                              <TableCell className="text-center flex items-center justify-center gap-1">
+                                                  <RiArrowUpDoubleFill color="green" />
+                                          {formatCurrency(item["Diferencia"])}
+                                                    </TableCell>
                                                 {/* Badge condicional */}
                                                 <TableCell className="text-center">
                                                     {item["Avance"].toFixed(2) === "100.00" ? (
