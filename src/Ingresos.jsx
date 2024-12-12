@@ -24,6 +24,13 @@ export const Ingresos = () => {
         console.error("Hubo un error al obtener los datos:", error);
       });
   }, []);
+  const formatCurrency = (value) => {
+    return new Intl.NumberFormat('es-PE', {
+        style: 'currency',
+        currency: 'PEN',
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2,
+    }).format(value);
 
   return (
     <>
@@ -57,7 +64,8 @@ export const Ingresos = () => {
                       <span className="font-semibold text-gray-900 dark:text-gray-50">
                         Fecha: {item.fecha} - Ingreso:
                       </span>{' '}
-                      {item.ingreso} {icon}
+                      {formatCurrency(item.ingreso)} {icon}
+                      
                     </li>
                   );
                 })}
