@@ -12,7 +12,7 @@ import {
 } from '@tremor/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
 import axios from "axios";
-
+import { RiArrowUpDoubleFill } from "@remixicon/react";
 const dataFormatter = (number) =>
     new Intl.NumberFormat("us").format(number).toString();
 
@@ -99,7 +99,11 @@ export const Meta = () => {
                                                     {Math.floor(item["Avance"] * 100) / 100}%
                                                             </TableCell>
 
-                                                <TableCell className="text-center">+{formatCurrency(item["Diferencia"])}</TableCell>
+                                                <TableCell className="text-center">
+                                                    <Badge className="bg-emerald-50 text-emerald-900 ring-emerald-600/30">
+                                                        <RiArrowUpDoubleFill />
+                                                        </Badge>
+                                                    {formatCurrency(item["Diferencia"])}</TableCell>
                                                 {/* Badge condicional */}
                                                 <TableCell className="text-center">
                                                     {item["Avance"].toFixed(2) === "100.00" ? (
