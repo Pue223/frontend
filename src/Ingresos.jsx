@@ -17,20 +17,22 @@ export const Ingresos = () => {
       .get('https://backendtw.onrender.com/api/ingresos')
       .then((response) => {
         if (response.data.ok) {
-          setIngresos(response.data.data);  // Guarda los ingresos en el estado
+          setIngresos(response.data.data); // Guarda los ingresos en el estado
         }
       })
       .catch((error) => {
         console.error("Hubo un error al obtener los datos:", error);
       });
   }, []);
+
   const formatCurrency = (value) => {
     return new Intl.NumberFormat('es-PE', {
-        style: 'currency',
-        currency: 'PEN',
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2,
-    }).format(value);
+      style: 'currency',
+      currency: 'PEN',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    }).format(value); // Falta cerrar esta llave y el paréntesis
+  };
 
   return (
     <>
@@ -65,7 +67,6 @@ export const Ingresos = () => {
                         Fecha: {item.fecha} - Ingreso:
                       </span>{' '}
                       {formatCurrency(item.ingreso)} {icon}
-                      
                     </li>
                   );
                 })}
