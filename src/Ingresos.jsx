@@ -42,7 +42,7 @@ export const Ingresos = () => {
                 {ingresos.map((item, index) => (
                   <li key={index}>
                     <span className="font-semibold text-gray-900 dark:text-gray-50">
-                      Fecha:{item.fecha } - Ingreso:
+                      Fecha: {item.fecha } - Ingreso:
                     </span>{' '}
                     {item.ingreso}
                   </li>
