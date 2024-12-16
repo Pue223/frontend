@@ -11,6 +11,7 @@ import {
     Badge
 } from '@tremor/react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@radix-ui/react-tabs';
+import confetti from 'canvas-confetti'; 
 import axios from "axios";
 import { RiArrowUpDoubleFill } from "@remixicon/react";
 const dataFormatter = (number) =>
@@ -65,6 +66,13 @@ export const Meta = () => {
             minimumFractionDigits: 2,
             maximumFractionDigits: 2,
         }).format(value);
+    };
+    const handleConfetti = () => {
+        confetti({
+            particleCount: 100,
+            spread: 70,
+            origin: { y: 0.6 },
+        });
     };
 
     return (
