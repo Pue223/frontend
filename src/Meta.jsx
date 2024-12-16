@@ -73,14 +73,17 @@ export const Meta = () => {
             <Tabs defaultValue="tab1">
                 <TabsList className="space-y-6 flex flex-col">
                     {/* Tab para el id 1 */}
-                    <TabsTrigger value="tab1">
-
+                    <TabsTrigger
+                        value="tab1"
+                        onClick={() => {
+                            if (dataId1.length > 0) {
+                                handleConfetti(); // Llama a la función de confetti
+                            }
+                        }}
+                    >
                         {dataId1.length > 0 && (
-
                             <Card className="mx-auto max-w-4xl mb-6">
-                                <p>
-                                    Cuadro 1:
-                                </p>
+                                <p>Cuadro 1:</p>
                                 <Table>
                                     <TableHead>
                                         <TableRow>
@@ -93,14 +96,19 @@ export const Meta = () => {
                                     <TableBody>
                                         {dataId1.map((item) => (
                                             <TableRow key={item.id}>
-                                                <TableCell className="text-center">{formatCurrency(item["Ingresos Corrientes"])}</TableCell>
-                                                <TableCell className="text-center">{formatCurrency(item["Umbral mínimo"])}</TableCell>
-                                                  <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
-
-                                              <TableCell className="text-center flex items-center justify-center gap-1">
-                                                  <RiArrowUpDoubleFill color="green" />
-                                          {formatCurrency(item["Diferencia"])}
-                                                    </TableCell>
+                                                <TableCell className="text-center">
+                                                    {formatCurrency(item["Ingresos Corrientes"])}
+                                                </TableCell>
+                                                <TableCell className="text-center">
+                                                    {formatCurrency(item["Umbral mínimo"])}
+                                                </TableCell>
+                                                <TableCell className="text-center">
+                                                    {item["Avance"].toFixed(2)}%
+                                                </TableCell>
+                                                <TableCell className="text-center flex items-center justify-center gap-1">
+                                                    <RiArrowUpDoubleFill color="green" />
+                                                    {formatCurrency(item["Diferencia"])}
+                                                </TableCell>
                                                 {/* Badge condicional */}
                                                 <TableCell className="text-center">
                                                     {item["Avance"].toFixed(2) > "100.00" ? (
