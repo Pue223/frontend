@@ -21,7 +21,15 @@ export const Meta = () => {
     const [data, setData] = useState([]);
     const [dataId1, setDataId1] = useState([]);
     const [dataId2, setDataId2] = useState([]);
+    const [showImage, setShowImage] = useState(false);
 
+    const handleTabClick = () => {
+        setShowImage(true); // Muestra la imagen
+        // Después de 3 segundos (3000ms), ocultamos la imagen
+        setTimeout(() => {
+            setShowImage(false); // Oculta la imagen después del tiempo definido
+        }, 3000);
+    };
     useEffect(() => {
         axios
             .get('https://backendtw.onrender.com/api/totalmeta')
@@ -138,7 +146,7 @@ export const Meta = () => {
                     </TabsTrigger>
 
                     {/* Tab para el id 2 */}
-                    <TabsTrigger value="tab2">
+                    <TabsTrigger value="tab2" onClick={handleTabClick}>
                         {dataId2.length > 0 && (
                             <Card className="mx-auto max-w-4xl mb-6">
                                 <p>
@@ -201,7 +209,19 @@ export const Meta = () => {
 
                     {/* Content for tab2 */}
                     <TabsContent value="tab2">
-                        <div className="mx-auto max-w-4xl"> {/* Ajusta el ancho del contenedor */}
+                        <div className="mx-auto max-w-4xl">
+                            {/* Mostrar el emoji animado */}
+                            {showImage && (
+                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                 <img
+                                     src="/preocupado.gif" // Ruta en "public"
+                                     alt="Preocupado"
+                                     className="w-52 h-52 object-contain rounded-full" // Uso de object-contain y border-radius
+                                 />
+                             </div>
+                            )}
+
+                            {/* Gráfico de BarChart */}
                             <p className="text-tremor-default text-tremor-content dark:text-dark-tremor-content">
                                 UMBRAL MAXIMO
                             </p>
@@ -214,7 +234,6 @@ export const Meta = () => {
                                 colors={["blue", "amber"]} // Cambia los colores aquí
                                 className="h-2xl"
                             />
-
                         </div>
                     </TabsContent>
                 </div>
