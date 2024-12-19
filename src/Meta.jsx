@@ -25,6 +25,7 @@ export const Meta = () => {
 
     const handleTabClick = () => {
         setShowImage(true); // Muestra la imagen
+        handleConfetti();
         // Después de 3 segundos (3000ms), ocultamos la imagen
         setTimeout(() => {
             setShowImage(false); // Oculta la imagen después del tiempo definido
@@ -167,9 +168,12 @@ export const Meta = () => {
                                                 <TableCell className="text-center">{formatCurrency(item["Ingresos Corrientes"])}</TableCell>
                                                 <TableCell className="text-center">{formatCurrency(item["Umbral máximo"])}</TableCell>
                                                 <TableCell className="text-center">{item["Avance"].toFixed(2)}%</TableCell>
-                                                <TableCell className="text-center">{formatCurrency(item["Diferencia"])}</TableCell>
+                                                <TableCell className="text-center flex items-center justify-center gap-1">
+                                                    <RiArrowUpDoubleFill color="green" />
+                                                    {formatCurrency(item["Diferencia"])}
+                                                </TableCell>
                                                    <TableCell className="text-center">
-                                                    {item["Avance"].toFixed(2) === "101.99" ? (
+                                                    {item["Avance"].toFixed(2) > "100.00" ? (
                                                         <Badge className="bg-emerald-50 text-emerald-900 ring-emerald-600/30">
                                                             META CUMPLIDA
                                                         </Badge>
@@ -212,7 +216,12 @@ export const Meta = () => {
                         <div className="mx-auto max-w-4xl">
                             {/* Mostrar el emoji animado */}
                             {showImage && (
-                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                                 <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex gap-4">
+                                  <img
+                                     src="/fireworks.gif" // Ruta en "public"
+                                     alt="Preocupado"
+                                     className="w-52 h-52 object-contain rounded-full" // Uso de object-contain y border-radius
+                                 />
                                  <img
                                      src="/preocupado.gif" // Ruta en "public"
                                      alt="Preocupado"
